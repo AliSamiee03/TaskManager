@@ -73,7 +73,7 @@ body {
 
 .under-navbar > .icons {
     width: 50%;
-    background-color: rgb(33, 56, 56);;
+    background-color: rgb(33, 56, 56);
     text-align: center;
 }
 
@@ -101,7 +101,57 @@ body {
 }
 
 .under-navbar > .search-bar {
+    display: flex;
+    justify-content: center; /* برای افقی وسط چین کردن */
+    align-items: center; /* برای عمودی وسط چین کردن */
     width: 25%;
-    background-color: darkgoldenrod;
+    background-color: rgb(33, 56, 56);
 }
 
+
+#form {
+    display: flex;
+    justify-content: center; /* برای افقی وسط چین کردن محتوا */
+    align-items: center; /* برای عمودی وسط چین کردن محتوا */
+    width: 80%;
+    height: 70px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+.search-form {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.search-form > #text-area {
+    position: absolute;
+    top: 8%;
+    height: 80%;
+    width: 70%;
+    border-radius: 10px 0 0 10px;
+    background-color: rgb(197, 197, 197);
+    padding: 0 10px;
+}
+
+.search-form > #submit-button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    right: 10%;
+    height: 80%;
+    width: 20%;
+    top: 8%;
+    border-radius: 0 10px 10px 0;
+    background-color: rgb(197, 197, 197);
+    color: rgb(70, 70, 70);
+}
+
+search-form > #submit-button:hover {
+    color:rgb(202, 202, 202);
+    background-color: rgb(43, 43, 43);
+}
