@@ -20,6 +20,8 @@ body {
     width: 25%;
     border: 2px solid gainsboro;
     border-radius: 20px;
+    padding: 15px 40px;
+    color:black;
 }
 
 .under-navbar {
@@ -31,28 +33,71 @@ body {
 
 .under-navbar > .login-signup {
     width: 25%;
-    background-color: bisque;
+    background-color: rgb(33, 56, 56);
 }
 
-
-
-.under-navbar > .login-signup  a {
+.login-signup > ul > li {
+    list-style: none;
     display: inline-block;
-
+    margin : 0 0 0 30px;
+    border: 1px solid rgb(161, 161, 161);
+    border-radius: 20px;
+    line-height: 50px;
+    width: 100px;
+    text-align: center;
 }
 
-#login {
-    margin: 0 10px 0 30px;
+.login-signup > ul > li > a{
+    text-decoration: none;
+    font-size: 18px;
+    color:rgb(161, 161, 161);
 }
 
-#signup {
-    margin: 0 0 0 10px;
+.login-signup > ul > li:hover > a{
+    font-weight: 700;
+    text-decoration: none;
+    color : darkslategray;
 }
 
+.login-signup > ul > li:hover {
+    background-color: gainsboro;
+    border: 1px solid rgb(68, 68, 68);;
+}
+
+
+.under-navbar > .login-signup > a{
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid black;
+}
 
 .under-navbar > .icons {
     width: 50%;
+    background-color: rgb(33, 56, 56);;
+    text-align: center;
+}
+
+.icons > ul > li {
+    list-style: none;
+    display: inline-block;
+    padding: 0 30px;
+    line-height: 90px;
+    width: 20%;
+}
+
+.icons > ul > li > a{
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    color: rgb(161, 161, 161);
+}
+
+.icons > ul > li:hover {
     background-color: gainsboro;
+}
+
+.icons > ul > li:hover > a {
+    color : darkslategrey;
 }
 
 .under-navbar > .search-bar {
