@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+{% endblock %}
+
+
+{% block title %}
+
+    Task Manager
+
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    {% else %}
+        <div class="clock-container">
+            <div id="clock" class="clock"></div>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="../static/js/clock.js"></script>
+{% endblock %}
+

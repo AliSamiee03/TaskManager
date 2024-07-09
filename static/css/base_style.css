@@ -6,6 +6,7 @@
 body {
     font-family: 'Barlow-Italic';
     overflow:hidden;
+    background-color: rgb(238, 238, 238);
 }
 
 .navbar {
@@ -183,12 +184,4 @@ search-form > #submit-button:hover {
     background-color: rgb(43, 43, 43);
 }
 
-.main-content {
-    height: 650px;
-    background-color: rgb(238, 238, 238);
-}
 
-footer {
-    background-color: dimgray;
-    height: 300px;
-}
