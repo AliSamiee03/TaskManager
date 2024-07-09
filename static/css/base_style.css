@@ -4,7 +4,8 @@
 }
 
 body {
-    font-family: 'Barlow-Italic'
+    font-family: 'Barlow-Italic';
+    overflow:hidden;
 }
 
 .navbar {
@@ -21,7 +22,33 @@ body {
     border: 2px solid gainsboro;
     border-radius: 20px;
     padding: 15px 40px;
-    color:black;
+    color:rgb(180, 180, 180);
+}
+
+
+#text-area {
+    height: 300px;
+    background-color: darkslategrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message > span {
+    font-size: 50px;
+    font-weight: 300;
+    color:rgb(180, 180, 180);
+}
+
+#special-text {
+    font-size: 70px;
+    font-weight: 500;
+}
+
+#special-text:hover {
+    text-decoration: underline;
+    font-weight: 900;
+    cursor: default;
 }
 
 .under-navbar {
@@ -154,4 +181,14 @@ body {
 search-form > #submit-button:hover {
     color:rgb(202, 202, 202);
     background-color: rgb(43, 43, 43);
+}
+
+.main-content {
+    height: 650px;
+    background-color: rgb(238, 238, 238);
+}
+
+footer {
+    background-color: dimgray;
+    height: 300px;
 }
