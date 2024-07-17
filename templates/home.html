@@ -3,6 +3,7 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stopwatch_style.css' %}">
 {% endblock %}
 
 
@@ -16,15 +17,32 @@
 
     {% if user.is_authenticated %}
 
+        <!-- <span id="hour"> 00 :</span>
+        <span id="minute"> 00 :</span>
+        <span id="second"> 00 </span> -->
+        <div id="timer">00:00:00</div>
+        <div class="buttons">
+            <button id="start">Start</button>
+            <button id="stop" disabled>Stop</button>
+            <button id="reset" disabled>Reset</button>
+        </div>
+
     {% else %}
+
         <div class="clock-container">
             <div id="clock" class="clock"></div>
         </div>
+
     {% endif %}
 
 {% endblock %}
 
 {% block scripts %}
-    <script src="../static/js/clock.js"></script>
+    {% if user.is_authenticated %}
+        <script src="../static/js/Stopwatch.js"></script>
+    {% else %}
+        <script src="../static/js/clock.js"></script>
+    {% endif %}
+
 {% endblock %}
 
