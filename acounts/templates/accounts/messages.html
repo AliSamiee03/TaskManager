@@ -1,9 +1,10 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% if messages %}
 
     {% for msg in messages %}
         
         {% if msg.tags == 'error info' %}
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            
             <script>
                 const Toast = Swal.mixin({
                     toast: true,
@@ -22,7 +23,24 @@
                 });
             </script>
 
-        
+        {% elif msg.tags == 'non-unique error' %}
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: "This email is already registered !"
+                });
+            </script>
         {% endif %}
         
     {% endfor %}

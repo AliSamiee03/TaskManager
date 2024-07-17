@@ -3,6 +3,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.core.exceptions import ValidationError
 
 
+
 def validate_precentage(value):
         if value < 0 or value > 100 :
             raise ValidationError('percentage must be between 0 and 100')
