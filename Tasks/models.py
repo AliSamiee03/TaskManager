@@ -5,8 +5,9 @@ from django.core.exceptions import ValidationError
 
 
 def validate_precentage(value):
-        if value < 0 or value > 100 :
-            raise ValidationError('percentage must be between 0 and 100')
+    pass
+        # if value < 0 or value > 100 :
+        #     raise ValidationError('percentage must be between 0 and 100')
 
 class UserAccountManager(BaseUserManager):
     def create_user(self, email, name , password=None):

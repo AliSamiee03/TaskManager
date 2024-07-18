@@ -1,8 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% if messages %}
     {% for msg in messages %}
-        {% if msg.tags == 'success info' %}
-
+        {% if msg.tags == 'progress-error error' %}
             <script>
                 const Toast = Swal.mixin({
                     toast: true,
@@ -16,32 +15,14 @@
                     }
                 });
                 Toast.fire({
-                    icon: "success",
-                    title: "Signed in successfully"
+                    icon: "error",
+                    title: "Progress should be between 0 and 100"
                 });
             </script>
 
-        {% elif msg.tags == 'logout info' %}
-            <script>
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "LogOut successfully"
-                });
-            </script>
         {% endif %}
 
-        {% if msg.tags == 'create-task success' %}
+        {% if msg.tags == 'time-input-error error' %}
             
             <script>
                 const Toast = Swal.mixin({
@@ -56,12 +37,11 @@
                     }
                 });
                 Toast.fire({
-                    icon: "success",
-                    title: "The task creation was successful"
+                    icon: "error",
+                    title: "The start time must be before the end time"
                 });
             </script>
-
+            
         {% endif %}
-
     {% endfor %}
 {% endif %}
