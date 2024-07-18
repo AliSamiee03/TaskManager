@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def create_task_view(request):
-
     if request.method == 'POST':
         form = CreateTaskForm(request.POST)
         if form.is_valid():
@@ -27,6 +26,7 @@ def create_task_view(request):
 
         form = CreateTaskForm()
     context = {
-        'form' : form
+        'form' : form,
     }
     return render(request, 'Tasks/create_task.html', context)
+
