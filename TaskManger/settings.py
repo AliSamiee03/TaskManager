@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/account/login/'
+
 
 AUTH_USER_MODEL = 'Tasks.UserAccount'
 

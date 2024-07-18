@@ -2,8 +2,13 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/stopwatch_style.css' %}">
+
+    {% if user.is_authenticated %}
+        <link rel="stylesheet" href="{% static 'css/stopwatch_style.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+    {% endif %}
+
 {% endblock %}
 
 
@@ -17,9 +22,6 @@
 
     {% if user.is_authenticated %}
 
-        <!-- <span id="hour"> 00 :</span>
-        <span id="minute"> 00 :</span>
-        <span id="second"> 00 </span> -->
         <div id="timer">00:00:00</div>
         <div class="buttons">
             <button id="start">Start</button>
