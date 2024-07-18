@@ -30,3 +30,5 @@ def create_task_view(request):
     }
     return render(request, 'Tasks/create_task.html', context)
 
+def show_all_tasks_view(request):
+    return render(request, 'Tasks/show-all-tasks.html')
