@@ -33,8 +33,12 @@ def signup_view(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         password = request.POST.get('password')
+        password_confirm = request.POST.get('password-confirm')
         if email in emails :
             messages.error(request, 'email is not unique!', extra_tags='non-unique')
+            return redirect('signup')
+        if password_confirm != password:
+            messages.error(request, 'The password and its repetition are not the same', extra_tags='Unequal-pass')
             return redirect('signup')
         user = UserAccount.objects.create(name= name, email= email)
         user.set_password(password)
