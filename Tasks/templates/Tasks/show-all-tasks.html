@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Tasks/css/swipper_style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock %}
+
+{% block title %} Show All Tasks {% endblock %}
+
+{% block content %}
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"></div>
+            <div class="swiper-slide"></div>
+            <div class="swiper-slide"></div>
+            <div class="swiper-slide"></div>
+            <!-- اسلایدهای بیشتر -->
+        </div>
+        <!-- افزودن ناوبری در صورت نیاز -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %} 
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // تنظیمات Swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            slidesPerView: 2, // نمایش دو اسلاید در کنار هم
+            spaceBetween: 10, // فاصله بین اسلایدها به پیکسل
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+{% endblock %}
