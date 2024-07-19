@@ -9,6 +9,7 @@
 {% block title %} Show All Tasks {% endblock %}
 
 {% block content %}
+    {% include 'Tasks/messages.html' %}
     <div class="swiper">
         <div class="swiper-wrapper">
             {% for task in tasks %}
@@ -21,10 +22,10 @@
                         <p class="show-detail"> <span>Category: </span> {{ task.category }} </p>
                         <ul class="update-delete">
                             <li>
-                                <a href="">Update</a>
+                                <a href="#">Update</a>
                             </li>
                             <li>
-                                <a href="">Delete</a>
+                                <a href="{% url 'delete-task' task.id %}">Delete</a>
                             </li>
                         </ul>
                     </div>

@@ -35,3 +35,10 @@ def show_all_tasks_view(request):
     tasks = Tasks.objects.all()
     context = {'tasks': tasks}
     return render(request, 'Tasks/show-all-tasks.html', context)
+
+def delete_task_view(request, task_id):
+    print(task_id)
+    task = Tasks.objects.get(id=task_id)
+    task.delete()
+    messages.success(request, 'Task Deleted !', extra_tags='delete')
+    return redirect('show-tasks')
