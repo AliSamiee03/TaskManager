@@ -11,10 +11,25 @@
 {% block content %}
     <div class="swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"></div>
-            <div class="swiper-slide"></div>
-            <div class="swiper-slide"></div>
-            <div class="swiper-slide"></div>
+            {% for task in tasks %}
+                <div class="swiper-slide">
+                    <div class="inner-swiper">
+                        <h3 id="title">{{ task.name }}</h3>
+                        <p class="show-detail"> <span>Start: </span> {{ task.start_date }} </p>
+                        <p class="show-detail"> <span>End: </span> {{ task.end_date }} </p>
+                        <p class="show-detail"> <span>Progress: </span> {{ task.progress }}% </p>
+                        <p class="show-detail"> <span>Category: </span> {{ task.category }} </p>
+                        <ul class="update-delete">
+                            <li>
+                                <a href="">Update</a>
+                            </li>
+                            <li>
+                                <a href="">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
             <!-- اسلایدهای بیشتر -->
         </div>
         <!-- افزودن ناوبری در صورت نیاز -->
@@ -27,20 +42,5 @@
 
 {% block scripts %} 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        // تنظیمات Swiper
-        const swiper = new Swiper('.swiper', {
-            loop: true,
-            slidesPerView: 2, // نمایش دو اسلاید در کنار هم
-            spaceBetween: 10, // فاصله بین اسلایدها به پیکسل
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-    </script>
+    <script src="{% static 'Tasks/js/swiper.js' %}"></script>
 {% endblock %}

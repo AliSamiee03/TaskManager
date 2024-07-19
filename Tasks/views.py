@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CreateTaskForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import Tasks
         
 
 @login_required
@@ -31,4 +32,6 @@ def create_task_view(request):
     return render(request, 'Tasks/create_task.html', context)
 
 def show_all_tasks_view(request):
-    return render(request, 'Tasks/show-all-tasks.html')
+    tasks = Tasks.objects.all()
+    context = {'tasks': tasks}
+    return render(request, 'Tasks/show-all-tasks.html', context)
