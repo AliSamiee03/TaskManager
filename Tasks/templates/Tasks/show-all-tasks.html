@@ -22,7 +22,7 @@
                         <p class="show-detail"> <span>Category: </span> {{ task.category }} </p>
                         <ul class="update-delete">
                             <li>
-                                <a href="#">Update</a>
+                                <a href="{% url 'update-task' task.id %}">Update</a>
                             </li>
                             <li>
                                 <a href="{% url 'delete-task' task.id %}">Delete</a>
