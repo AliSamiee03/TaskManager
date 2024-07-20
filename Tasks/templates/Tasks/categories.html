@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %} 
+    <link rel="stylesheet" href="{% static 'Tasks/css/swiper_category_style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock %}
+
+{% block title %} Categories {% endblock %}
+
+{% block content %} 
+    {% include 'Tasks/messages.html' %}
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            {% for category in categories %}
+                <div class="swiper-slide">
+                    <div class="inner-swiper">
+                        <h3 id="title">{{ category.name }}</h3>
+                        <p class="show-detail"><span>Functor : </span> {{ category.functor }} </p>
+                        <ul class="update-delete">
+                            <li>
+                                <a href="#">Update</a>
+                            </li>
+                            <li>
+                                <a href="#">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+            <!-- اسلایدهای بیشتر -->
+        </div>
+        <!-- افزودن ناوبری در صورت نیاز -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+{% endblock %}
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'Tasks/js/swiper.js' %}"></script>
+{% block scripts %} {% endblock %}
