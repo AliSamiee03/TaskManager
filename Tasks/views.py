@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CreateTaskForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Tasks
+from .models import Tasks, Category
         
 
 @login_required
@@ -35,17 +35,20 @@ def create_task_view(request):
     }
     return render(request, 'Tasks/create_task.html', context)
 
+@login_required
 def show_all_tasks_view(request):
     tasks = Tasks.objects.filter(functor = request.user)
     context = {'tasks': tasks}
     return render(request, 'Tasks/show-all-tasks.html', context)
 
+@login_required
 def delete_task_view(request, task_id):
     task = Tasks.objects.get(id=task_id)
     task.delete()
     messages.success(request, 'Task Deleted !', extra_tags='delete')
     return redirect('show-tasks')
 
+@login_required
 def update_task_view(request, task_id):
     task = Tasks.objects.get(id=task_id)
     if request.method == 'POST':
@@ -71,3 +74,9 @@ def update_task_view(request, task_id):
         'button': 'Update',
     }
     return render(request, 'Tasks/create_task.html', context)
+
+@login_required
+def show_categories(request):
+    categories = Category.objects.filter(functor = request.user)
+    context = {'categories': categories}
+    return render(request, 'Tasks/categories.html', context=context)
