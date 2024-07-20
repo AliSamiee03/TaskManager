@@ -23,6 +23,10 @@ body {
     border: 2px solid gainsboro;
     border-radius: 20px;
     padding: 15px 40px;
+}
+
+.navbar > .inner-navbar a {
+    text-decoration: none;
     color:rgb(180, 180, 180);
 }
 

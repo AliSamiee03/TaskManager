@@ -13,7 +13,9 @@
         <form action="" method="post">
             {% csrf_token %}
             {{ form }}
-            <button type="submit">Create</button>
+            <label id="private-label" for="private-input">Is Private : </label>
+            <input type="checkbox" id="private-input" name="private" value="true">
+            <button type="submit">{{ button }}</button>
         </form>
     </div>
     {% include 'Tasks/messages.html' %}

@@ -19,6 +19,9 @@ def create_task_view(request):
                 messages.error(request, 'Progress should be between 0 and 100', extra_tags='progress-error')
                 return redirect('create-task')   
             
+            private = request.POST.get('private') 
+            if private == 'true' :
+                task.private = True
             task.functor = request.user
             messages.success(request, 'The task creation was successful', extra_tags='create-task')
             task.save()
@@ -28,11 +31,12 @@ def create_task_view(request):
         form = CreateTaskForm()
     context = {
         'form' : form,
+        'button': 'Create',
     }
     return render(request, 'Tasks/create_task.html', context)
 
 def show_all_tasks_view(request):
-    tasks = Tasks.objects.all()
+    tasks = Tasks.objects.filter(functor = request.user)
     context = {'tasks': tasks}
     return render(request, 'Tasks/show-all-tasks.html', context)
 
@@ -61,9 +65,9 @@ def update_task_view(request, task_id):
             task.save()
             return redirect('show-tasks')
     else:
-
         form = CreateTaskForm(instance=task)
     context = {
         'form' : form,
+        'button': 'Update',
     }
     return render(request, 'Tasks/create_task.html', context)

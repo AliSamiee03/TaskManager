@@ -71,6 +71,7 @@ class Tasks(models.Model):
     progress = models.DecimalField(max_digits=5, decimal_places=2, validators=[validate_precentage])
     functor = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    private = models.BooleanField(default=False)
 
 
     def __str__(self) -> str:
@@ -79,6 +80,7 @@ class Tasks(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+    functor = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.name

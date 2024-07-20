@@ -80,3 +80,12 @@ create-task-form form {
     padding: 10px;
     width:244px;
 }
+
+#private-label {
+    display: inline-block;
+}
+
+#private-input {
+    display: inline-block;
+    width: 20px;
+}
