@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tasks
+from .models import Tasks, Category
 
 class CreateTaskForm(forms.ModelForm):
     class Meta: 
@@ -13,3 +13,10 @@ class CreateTaskForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'create-input', 'id': 'category-input'}),
         }
 
+class CreateCategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
