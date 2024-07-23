@@ -100,3 +100,11 @@ def create_category_view(request):
         'button': 'Create',
     }
     return render(request, 'Tasks/create-category.html', context)
+
+
+@login_required
+def delete_category_view(request, category_id):
+    category = Category.objects.get(id=category_id)
+    category.delete()
+    messages.success(request, 'Category Deleted !', extra_tags='delete-category')
+    return redirect('categories')

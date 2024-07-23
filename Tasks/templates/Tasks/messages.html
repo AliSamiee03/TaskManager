@@ -107,6 +107,7 @@
         {% endif %}
 
         {% if msg.tags == 'delete-category success' %}
+        
             <script>
                 const Toast = Swal.mixin({
                     toast: true,
@@ -124,6 +125,8 @@
                     title: "Category Deleted"
                 });
             </script>
+
         {% endif %}
+
     {% endfor %}
 {% endif %}
