@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CreateTaskForm
+from .forms import CreateTaskForm, CreateCategoryForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Tasks, Category
@@ -82,3 +82,21 @@ def show_categories(request):
     context = {'categories': categories}
     return render(request, 'Tasks/categories.html', context)
 
+@login_required 
+def create_category_view(request):
+    if request.method == 'POST':
+        form = CreateCategoryForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.functor = request.user
+            messages.success(request, 'The category creation was successful', extra_tags='create-category')
+            task.save()
+            return redirect('categories')
+    else:
+
+        form = CreateCategoryForm()
+    context = {
+        'form' : form,
+        'button': 'Create',
+    }
+    return render(request, 'Tasks/create-category.html', context)

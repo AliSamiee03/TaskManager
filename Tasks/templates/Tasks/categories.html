@@ -13,7 +13,7 @@
 {% block content %} 
     {% include 'Tasks/messages.html' %}
     <div class="create-link">
-        <a id="create-category-link" href="#">Create New Category</a>
+        <a id="create-category-link" href="{% url 'create-category' %}">Create New Category</a>
     </div>
     <div class="swiper">
         <div class="swiper-wrapper">
