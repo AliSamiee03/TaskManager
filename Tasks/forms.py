@@ -12,3 +12,4 @@ class CreateTaskForm(forms.ModelForm):
             'progress': forms.NumberInput(attrs={'class': 'create-input'}),
             'category': forms.Select(attrs={'class': 'create-input', 'id': 'category-input'}),
         }
+

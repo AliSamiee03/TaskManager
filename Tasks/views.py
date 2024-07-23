@@ -78,5 +78,7 @@ def update_task_view(request, task_id):
 @login_required
 def show_categories(request):
     categories = Category.objects.filter(functor = request.user)
+    print(categories)
     context = {'categories': categories}
-    return render(request, 'Tasks/categories.html', context=context)
+    return render(request, 'Tasks/categories.html', context)
+
