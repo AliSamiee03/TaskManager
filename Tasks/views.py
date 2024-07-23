@@ -77,13 +77,14 @@ def update_task_view(request, task_id):
 
 @login_required
 def show_categories(request):
+
     categories = Category.objects.filter(functor = request.user)
-    print(categories)
     context = {'categories': categories}
     return render(request, 'Tasks/categories.html', context)
 
 @login_required 
 def create_category_view(request):
+    
     if request.method == 'POST':
         form = CreateCategoryForm(request.POST)
         if form.is_valid():
@@ -108,3 +109,36 @@ def delete_category_view(request, category_id):
     category.delete()
     messages.success(request, 'Category Deleted !', extra_tags='delete-category')
     return redirect('categories')
+
+@login_required
+def update_category_view(request, category_id):
+
+    category = Category.objects.get(id=category_id)
+
+    if request.method == 'POST':
+    
+        form = CreateCategoryForm(request.POST, instance=category)
+        if form.is_valid():
+
+            form.save(commit=False)
+            form.functor = request.user
+            form.save()
+            messages.success(request, 'The category update was successful', extra_tags='update-category') 
+            return redirect('categories')       
+        
+    else:
+
+        form = CreateCategoryForm(instance=category)
+
+    context = {
+        'form': form,
+        'button': 'Update'
+    }
+    
+    return render(request, 'Tasks/create-category.html', context)
+
+def show_task_by_category_view(request, category_id):
+
+    tasks = Tasks.objects.filter(category__id=category_id)
+    context = {'tasks': tasks}
+    return render(request, 'Tasks/show-all-tasks.html', context)

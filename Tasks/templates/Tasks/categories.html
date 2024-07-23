@@ -22,10 +22,10 @@
                 <div class="inner-swiper">
                     <h3 id="title">{{ category.name }}</h3>
                     <p class="show-detail"><span>Functor : </span> {{ category.functor }} </p>
-                    <a id="a-show-tasks" href="#"> Show Tasks </a>
+                    <a id="a-show-tasks" href="{% url 'task-by-category' category.id %}"> Show Tasks </a>
                     <ul class="update-delete">
                         <li>
-                            <a href="#">Update</a>
+                            <a href="{% url 'update-category' category.id %}">Update</a>
                         </li>
                         <li>
                             <a href="{% url 'delete-category' category.id %}">Delete</a>
