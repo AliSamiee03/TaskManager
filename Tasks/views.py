@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import CreateTaskForm, CreateCategoryForm
+from .forms import CreateTaskForm, CreateCategoryForm, CreateCommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Tasks, Category
+from .models import Tasks, Category, Comment
         
 
 @login_required
@@ -137,8 +137,44 @@ def update_category_view(request, category_id):
     
     return render(request, 'Tasks/create-category.html', context)
 
+
+@login_required
 def show_task_by_category_view(request, category_id):
 
     tasks = Tasks.objects.filter(category__id=category_id)
     context = {'tasks': tasks}
     return render(request, 'Tasks/show-all-tasks.html', context)
+
+@login_required
+def comments_view(request, task_id):
+    comments = Comment.objects.filter(task__id= task_id)
+    if request.method == 'POST':
+        form = CreateCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.Author = request.user
+            comment.task = Tasks.objects.get(id=task_id)
+            comment.save()
+            messages.success(request, 'A comment was made', extra_tags='comment')
+            return redirect('comments', task_id=task_id)
+    else:
+        form = CreateCommentForm()
+    context = {
+        'comments': comments, 
+        'form': form,
+        'button': 'Send',
+        'task_id': task_id,
+        }
+    return render(request, 'Tasks/comments.html', context)
+
+
+@login_required
+def delete_comment_view(request, task_id, comment_id):
+    comment = Comment.objects.get(id= comment_id)
+    if comment.Author == request.user:
+        comment.delete()
+        messages.success(request, 'The comment was deleted', extra_tags='delete-comment')
+    else :
+        messages.error(request, 'You are not allowed to delete comments', extra_tags='delete-comment')
+
+    return redirect('comments', task_id=task_id)
