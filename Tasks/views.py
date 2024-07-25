@@ -178,3 +178,10 @@ def delete_comment_view(request, task_id, comment_id):
         messages.error(request, 'You are not allowed to delete comments', extra_tags='delete-comment')
 
     return redirect('comments', task_id=task_id)
+
+def show_public_tasks_view(request):
+    public_tasks = Tasks.objects.filter(private=False)
+    context = {
+        'tasks': public_tasks 
+    }
+    return render(request, 'Tasks/show-all-tasks.html', context)
