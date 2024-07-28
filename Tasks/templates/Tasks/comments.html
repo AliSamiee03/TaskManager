@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Tasks/css/comments_style.css' %}">
+    <title>Create Task</title>
+</head>
+<body>
+    
+    <div class="create-comment-form">
+        <div class="comments">
+            {% for comment in comments %}
+                <div class="single-comment">
+                    <h3>Author : {{ comment.Author }}</h3>
+                
+                    <p class="description">
+                        {{ comment.description }} <span id="time">{{ comment.date }}</span>
+                    </p>
+                    <a id="delete-button" href="{% url 'delete-comment' task_id comment.id %}">Delete</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="form">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">{{ button }}</button>
+            </form>
+        </div>
+    </div>
+    {% include 'Tasks/messages.html' %}
+</body>
+</html>

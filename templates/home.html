@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+
+    {% if user.is_authenticated %}
+        <link rel="stylesheet" href="{% static 'css/stopwatch_style.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+    {% endif %}
+
+{% endblock %}
+
+
+{% block title %}
+
+    Task Manager
+
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <div id="timer">00:00:00</div>
+        <div class="buttons">
+            <button id="start">Start</button>
+            <button id="stop" disabled>Stop</button>
+            <button id="reset" disabled>Reset</button>
+        </div>
+
+    {% else %}
+
+        <div class="clock-container">
+            <div id="clock" class="clock"></div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+    {% if user.is_authenticated %}
+        <script src="../static/js/Stopwatch.js"></script>
+    {% else %}
+        <script src="../static/js/clock.js"></script>
+    {% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,46 @@
+.main-content {
+    width: 40%;
+    height: 350px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    flex-direction: column;
+    box-shadow: 0 5px 10px 0 rgb(82, 82, 82);
+}
+
+#timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: #333;
+    border: 2px ridge rgb(143, 143, 143);
+    padding: 15px;
+    border-radius: 20px;
+    width: 350px;
+    height: 150px;
+}
+.buttons > button {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons > button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 20px 0 #0056b3;
+}

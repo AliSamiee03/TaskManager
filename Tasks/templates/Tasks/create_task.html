@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Tasks/css/create_style.css' %}">
+    <title>Create Task</title>
+</head>
+<body>
+    <div class="create-task-form">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <label id="private-label" for="private-input">Is Private : </label>
+            <input type="checkbox" id="private-input" name="private" value="true">
+            <button type="submit">{{ button }}</button>
+        </form>
+    </div>
+    {% include 'Tasks/messages.html' %}
+</body>
+</html>

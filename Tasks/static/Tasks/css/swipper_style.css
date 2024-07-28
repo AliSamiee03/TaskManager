@@ -1,0 +1,63 @@
+.swiper {
+    height: 400px;
+    margin: 20px 0;
+}
+
+.swiper-slide {
+    background-color: #ccc; /* رنگ پس‌زمینه برای وضوح بیشتر */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.inner-swiper {
+    margin: 40px 40px 30px 40px;
+    background-color: rgb(107, 107, 107);
+    height: 85%;
+    border: 2px solid rgb(49, 49, 49);
+    padding: 30px;
+}
+
+#title {
+    text-align: center;
+}
+
+.show-detail {
+    margin-top: 20px;
+}
+
+.show-detail > span {
+    font-weight: bold;
+}
+
+.update-delete {
+    margin-top: 25px;
+}
+
+.update-delete > li {
+    display: inline-block;
+    list-style: none;
+    margin-right: 30px;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 10px;
+    border-radius: 20px;
+
+}
+
+.update-delete > li > a {
+    text-decoration: none;
+    color: rgb(204, 204, 204);
+}
+
+.update-delete > li:hover > a {
+    color:rgb(73, 73, 73);
+}
+
+.update-delete > li:hover {
+    border: 1px solid rgb(73, 73, 73);
+    background-color: gainsboro;
+}
+
+
+

@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'Barlow-Italic';
+    src: url('../fonts/Barlow-Italic.ttf') format('woff2');
+}
+
+
+body {
+    font-family: 'Barlow-Italic';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: darkslategrey;
+}
+
+.create-task-form {
+    width: 25%;
+    height: 550px;
+    background-color: rgb(161, 161, 161);
+    display: flex;
+    justify-content: center; /* افقی مرکز چین کردن */
+    align-items: center;   /* عمودی مرکز چین کردن */
+    border: 2px inset gainsboro;
+}
+
+.create-task-form:hover {
+    border: 4px inset gainsboro;
+}
+
+create-task-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.create-task-form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.create-task-form input {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 3px;
+    width:220px;
+    outline: none;
+    border: 2px solid #007BFF;
+    transition: all 0.5s ease;
+}
+
+.create-task-form input:focus {
+    border: 2px solid #0056b3;
+    box-shadow: 0 0 20px 0 #0056b3;
+}
+
+.create-task-form button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 100px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.create-task-form button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 20px 0 #0056b3;
+}
+
+#category-input {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width:244px;
+}
+
+#private-label {
+    display: inline-block;
+}
+
+#private-input {
+    display: inline-block;
+    width: 20px;
+}

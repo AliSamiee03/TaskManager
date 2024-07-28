@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %} 
+    <link rel="stylesheet" href="{% static 'Tasks/css/swiper_category_style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% endblock %}
+
+{% block title %} Categories {% endblock %}
+
+{% block content %} 
+    {% include 'Tasks/messages.html' %}
+    <div class="create-link">
+        <a id="create-category-link" href="{% url 'create-category' %}">Create New Category</a>
+    </div>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            {% for category in categories %}
+            <div class="swiper-slide">
+                <div class="inner-swiper">
+                    <h3 id="title">{{ category.name }}</h3>
+                    <p class="show-detail"><span>Functor : </span> {{ category.functor }} </p>
+                    <a id="a-show-tasks" href="{% url 'task-by-category' category.id %}"> Show Tasks </a>
+                    <ul class="update-delete">
+                        <li>
+                            <a href="{% url 'update-category' category.id %}">Update</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'delete-category' category.id %}">Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        ...
+        </div>
+        <div class="swiper-pagination"></div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+{% endblock %}
+    
+{% block scripts %} 
+    <script type="module">
+        import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+
+        const swiper = new Swiper(...)
+    </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'Tasks/js/swiper.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="inner-swiper">
+                        <h3 id="title">{{ category.name }}</h3>
+                        <p class="show-detail"><span>Functor : </span> {{ category.functor }} </p>
+                        <ul class="update-delete">
+                            <li>
+                                <a href="#">Update</a>
+                            </li>
+                            <li>
+                                <a href="#">Delete</a>
+                            </li>
+                        </ul>
+                    </div> -->

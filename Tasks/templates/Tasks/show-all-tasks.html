@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Tasks/css/swipper_style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+{% endblock %}
+
+{% block title %} Show All Tasks {% endblock %}
+
+{% block content %}
+    {% include 'Tasks/messages.html' %}
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            {% for task in tasks %}
+                <div class="swiper-slide">
+                    <div class="inner-swiper">
+                        <h3 id="title">{{ task.name }}</h3>
+                        <p class="show-detail"> <span>Start: </span> {{ task.start_date }} </p>
+                        <p class="show-detail"> <span>End: </span> {{ task.end_date }} </p>
+                        <p class="show-detail"> <span>Progress: </span> {{ task.progress }}% </p>
+                        <p class="show-detail"> <span>Category: </span> {{ task.category }} </p>
+                        <ul class="update-delete">
+                            <li>
+                                <a href="{% url 'update-task' task.id %}">Update</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'delete-task' task.id %}">Delete</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'comments' task.id %}">Comments</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+            <!-- اسلایدهای بیشتر -->
+        </div>
+        <!-- افزودن ناوبری در صورت نیاز -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %} 
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'Tasks/js/swiper.js' %}"></script>
+{% endblock %}
