@@ -8,7 +8,7 @@ from .models import Tasks, Category, Comment
 @login_required
 def create_task_view(request):
     if request.method == 'POST':
-        form = CreateTaskForm(request.POST)
+        form = CreateTaskForm(request.POST, user=request.user)
         if form.is_valid():
             task = form.save(commit=False)
             if task.start_date > task.end_date :
@@ -28,7 +28,7 @@ def create_task_view(request):
             return redirect('Home')
     else:
 
-        form = CreateTaskForm()
+        form = CreateTaskForm(user=request.user)
     context = {
         'form' : form,
         'button': 'Create',
@@ -44,6 +44,9 @@ def show_all_tasks_view(request):
 @login_required
 def delete_task_view(request, task_id):
     task = Tasks.objects.get(id=task_id)
+    if request.user != task.functor:
+            messages.error(request, 'You are not allowed to delete this task', extra_tags='perm-delete')
+            return redirect('public-tasks')
     task.delete()
     messages.success(request, 'Task Deleted !', extra_tags='delete')
     return redirect('show-tasks')
@@ -52,7 +55,10 @@ def delete_task_view(request, task_id):
 def update_task_view(request, task_id):
     task = Tasks.objects.get(id=task_id)
     if request.method == 'POST':
-        form = CreateTaskForm(request.POST, instance=task)
+        if request.user != task.functor:
+            messages.error(request, 'You are not allowed to update this task', extra_tags='perm-update')
+            return redirect('public-tasks')
+        form = CreateTaskForm(request.POST, instance=task, user=request.user)
         if form.is_valid():
             task = form.save(commit=False)
             if task.start_date > task.end_date :
@@ -68,7 +74,7 @@ def update_task_view(request, task_id):
             task.save()
             return redirect('show-tasks')
     else:
-        form = CreateTaskForm(instance=task)
+        form = CreateTaskForm(instance=task, user=request.user)
     context = {
         'form' : form,
         'button': 'Update',

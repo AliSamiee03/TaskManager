@@ -12,6 +12,11 @@ class CreateTaskForm(forms.ModelForm):
             'progress': forms.NumberInput(attrs={'class': 'create-input'}),
             'category': forms.Select(attrs={'class': 'create-input', 'id': 'category-input'}),
         }
+    
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+        self.fields['category'].queryset = Category.objects.filter(functor=user)
 
 class CreateCategoryForm(forms.ModelForm):
     class Meta:
