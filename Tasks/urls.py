@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import create_task_view, show_all_tasks_view, delete_task_view, update_task_view, show_categories, create_category_view, delete_category_view, update_category_view, show_task_by_category_view, comments_view, delete_comment_view, show_public_tasks_view
+from .views import create_task_view, show_all_tasks_view, delete_task_view, update_task_view, show_categories, create_category_view, delete_category_view, update_category_view, show_task_by_category_view, comments_view, delete_comment_view, show_public_tasks_view, search_view
 
 urlpatterns = [
     path('create-task/', create_task_view, name='create-task'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('comments/<task_id>/', comments_view, name='comments'),
     path('delete-comment/<task_id>/<comment_id>/', delete_comment_view, name='delete-comment'),
     path('public-tasks/', show_public_tasks_view, name='public-tasks'),
+    path('search/', search_view, name='search')
 ]

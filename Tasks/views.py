@@ -3,6 +3,8 @@ from .forms import CreateTaskForm, CreateCategoryForm, CreateCommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Tasks, Category, Comment
+from django.db.models import Q
+
         
 
 @login_required
@@ -191,3 +193,16 @@ def show_public_tasks_view(request):
         'tasks': public_tasks 
     }
     return render(request, 'Tasks/show-all-tasks.html', context)
+
+
+def search_view(request):
+    
+    if request.method == 'GET':
+        search_str = request.GET.get('search')
+        tasks = Tasks.objects.filter(Q(name__contains=search_str, functor=request.user, private=True) | Q(private=False, name__contains=search_str))
+        context = {
+            'tasks': tasks
+        }
+        return render(request, 'Tasks/show-all-tasks.html', context)
+    
+    return redirect(request.META.get('HTTP_REFERER', '/'))

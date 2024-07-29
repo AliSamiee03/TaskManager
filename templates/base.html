@@ -57,8 +57,8 @@
         </div>
         <div class="search-bar">
             <div id="form">
-                <form class="search-form">
-                    <input id="text-area" type="text" placeholder="Search...">
+                <form class="search-form" method="GET" action="{% url 'search' %}">
+                    <input id="text-area" type="text" name="search" placeholder="Search...">
                     <button id="submit-button" type="submit">Serach</button>
                 </form>
             </div>
