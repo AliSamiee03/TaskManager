@@ -14,7 +14,7 @@
         <div class="comments">
             {% for comment in comments %}
                 <div class="single-comment">
-                    <h3>Author : {{ comment.Author }}</h3>
+                    <h3>Author : {{ comment.Author.name }}</h3>
                 
                     <p class="description">
                         {{ comment.description }} <span id="time">{{ comment.date }}</span>
