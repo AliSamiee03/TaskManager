@@ -1,0 +1,47 @@
+name: CI/CD TaskManager
+
+on:
+  push:
+    branches: [ main ] # هر وقت روی برنچ اصلی پوش کردی اجرا شود
+
+jobs:
+  # --- جاب اول: دیپلوی روی محیط تست ---
+  deploy-dev:
+    name: Deploy to Dev Environment
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: SSH and Update Dev
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/lexifai/dev
+            git pull origin main
+            ./venv/bin/pip install -r requirements.txt
+            ./venv/bin/python manage.py migrate
+            ./venv/bin/python manage.py collectstatic --noinput
+            systemctl restart task_dev
+
+  # --- جاب دوم: دیپلوی روی محیط اصلی (منتظر تایید شما می‌ماند) ---
+  deploy-qa:
+    name: Deploy to QA Environment
+    needs: deploy-dev # فقط اگر دیپلوی تست موفق بود، این مرحله فعال شود
+    runs-on: ubuntu-latest
+    environment: qa # این خط باعث می‌شود گیت‌هاب از شما اجازه بگیرد
+    steps:
+      - name: SSH and Update QA
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/lexifai/qa
+            git pull origin main
+            ./venv/bin/pip install -r requirements.txt
+            ./venv/bin/python manage.py migrate
+            ./venv/bin/python manage.py collectstatic --noinput
+            systemctl restart task_qa
